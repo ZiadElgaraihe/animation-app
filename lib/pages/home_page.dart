@@ -1,4 +1,5 @@
 import 'package:animation/components/add_item_button.dart';
+import 'package:animation/components/deleted_item.dart';
 import 'package:animation/components/list_item.dart';
 import 'package:animation/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -34,14 +35,12 @@ class _HomeState extends State<Home> {
   }
 
   void removeItem(int index) {
-    String text = listOfItems.removeAt(index);
+    listOfItems.removeAt(index);
     animatedListKey.currentState!.removeItem(index, (context, animation) {
       return SizeTransition(
-          sizeFactor: animation,
-          child: ListItem(
-            text: text,
-            onPressed: () {},
-          ));
+        sizeFactor: animation,
+        child: const DeletedItem(),
+      );
     });
   }
 
